@@ -28,19 +28,23 @@
 
                                 <br />
                                 {{-- Modifier --}}
-                                <a href="{{ route('products.edit', $product) }}" class="ml-2 text-green-600 underline">
-                                    Modifier
-                                </a>
+                                @can('manage-product', $product)
+                                    <a href="{{ route('products.edit', $product) }}" class="ml-2 text-green-600 underline">
+                                        Modifier
+                                    </a>
+                                @endcan
 
                                 {{-- Supprimer --}}
-                                <form action="{{ route('products.destroy', $product) }}" method="POST" class="inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="ml-2 text-red-600 underline"
-                                        onclick="return confirm('Supprimer ce produit ?')">
-                                        Supprimer
-                                    </button>
-                                </form>
+                                @can('manage-product', $product)
+                                    <form action="{{ route('products.destroy', $product) }}" method="POST" class="inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="ml-2 text-red-600 underline"
+                                            onclick="return confirm('Supprimer ce produit ?')">
+                                            Supprimer
+                                        </button>
+                                    </form>
+                                @endcan
                             </li>
                         @endforeach
                     </ul>
