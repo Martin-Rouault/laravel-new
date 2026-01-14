@@ -20,12 +20,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Gate::define('manage-product', function ($user, $product) {
-            return $user->id === $product->user_id;
-        });
+        // Gate::define('manage-product', function ($user, $product) {
+        //     return $user->id === $product->user_id;
+        // });
 
-        Gate::define('view-product', function ($user, $product) {
-            return $product->is_public || $user->id === $product->user_id;
-        });
+        // Gate::define('view-product', function ($user, $product) {
+        //     return $product->is_public || $user->id === $product->user_id;
+        // });
     }
 }
